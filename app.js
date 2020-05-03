@@ -23,11 +23,6 @@ var budgetController = (function(){
     }
 
 })();
-const Expense = function(id, description, value){
-    this.id = id;
-    this.descripiton = description;
-    this.value = value;
-}
 
 var UIController = (function(){
     const DOMstrings={
