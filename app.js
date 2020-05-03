@@ -11,8 +11,23 @@ var budgetController = (function(){
         this.value = value;
     }
 
-})();
+    const data = {
+        allItems : {
+            income:[],
+            expense:[]
+        },
+        total:{
+            income:0,
+            expense:0
+        }
+    }
 
+})();
+const Expense = function(id, description, value){
+    this.id = id;
+    this.descripiton = description;
+    this.value = value;
+}
 
 var UIController = (function(){
     const DOMstrings={
