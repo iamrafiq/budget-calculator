@@ -1,4 +1,15 @@
 var budgetController = (function(){
+    const Expense = function(id, description, value){
+        this.id = id;
+        this.descripiton = description;
+        this.value = value;
+    }
+
+    const Income = function(id, descripiton, value){
+        this.id = id;
+        this.descripiton;
+        this.value = value;
+    }
 
 })();
 
