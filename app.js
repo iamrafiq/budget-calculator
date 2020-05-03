@@ -13,13 +13,28 @@ var budgetController = (function(){
 
     const data = {
         allItems : {
-            income:[],
-            expense:[]
+            inc:[],
+            exp:[]
         },
         total:{
-            income:0,
-            expense:0
+            inc:0,
+            exp:0
         }
+    }
+    const addItem = function(type, descripiton, value){
+        const newItem, ID;
+        //create new ID
+        ID=data.allItems[type][data.allItems[type].length-1].id+1;
+        //create new Item based on inc or exp
+        if(type===UIController.getDOMstring().type.income){
+            newItem = new Income(ID, descripiton, value);
+        }else if(UIController.getDOMstring().type.expense){
+            newItem = new Expense(ID, descripiton, value);
+        }
+        //push it into our data structure
+        data.allItems[type].push(newItem);
+        //returning the new Item
+        return newItem;
     }
 
 })();
@@ -29,7 +44,11 @@ var UIController = (function(){
         inputType:'.add__type',
         inputDescription:'.add__description',
         inputValue:'.add__value',
-        inputBtn:'.add__btn'
+        inputBtn:'.add__btn',
+        type:{
+            income:'inc',
+            expense:'exp'
+        }
 
     }
     function getInput(){
