@@ -7,7 +7,7 @@ var budgetController = (function(){
 
     const Income = function(id, descripiton, value){
         this.id = id;
-        this.descripiton;
+        this.descripiton = descripiton;
         this.value = value;
     }
 
@@ -22,19 +22,26 @@ var budgetController = (function(){
         }
     }
     const addItem = function(type, descripiton, value){
-        const newItem, ID;
+        let newItem, ID;
         //create new ID
-        ID=data.allItems[type][data.allItems[type].length-1].id+1;
+        ID = data.allItems[type].length;
+        console.log();
         //create new Item based on inc or exp
         if(type===UIController.getDOMstring().type.income){
             newItem = new Income(ID, descripiton, value);
-        }else if(UIController.getDOMstring().type.expense){
+        }else if(type === UIController.getDOMstring().type.expense){
             newItem = new Expense(ID, descripiton, value);
         }
         //push it into our data structure
         data.allItems[type].push(newItem);
         //returning the new Item
+        console.log(newItem);
         return newItem;
+    }
+
+    return{
+        addItem:addItem,
+        data:data
     }
 
 })();
@@ -84,8 +91,8 @@ var controller = (function(budgetCtrl, UICtrl){
     function ctrlAddItem(){
         //Get the field input data
         var input = UIController.getInput();
-        console.log(input);
-
+       // console.log(input);
+        budgetController.addItem(input.type, input.descripiton, input.value);
     }
     return{
         init:function(){
